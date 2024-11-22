@@ -7,11 +7,13 @@ from status import Status
 
 @dataclass
 class Book:
-    '''Implementation of the entity of the book
+    """
+    Implementation of the entity of the book
     :ivar __title: (str) The title of the book
     :ivar __author: (str) The author of the book
     :ivar __year: (int) The year of the book's release
-    '''
+    """
+
     __title: str
     __author: str
     __year: int
@@ -59,7 +61,10 @@ class Book:
         return self.__id
 
     def change_status(self) -> None:
-        '''Change self.__status to inverse'''
+        """
+        Change self.__status to inverse
+        """
+
         if self.__status == Status.IN_STOCK:
             self.__status = Status.ISSUED
         else:
