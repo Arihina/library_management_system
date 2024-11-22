@@ -13,3 +13,10 @@ class MemoryLibrary:
     @property
     def library(self) -> dict[int, Book]:
         return self.__library
+
+    def load_books_from_dict(self, books: dict[int, Book]) -> None:
+        """
+        Load books from prepare dict
+        :param books: (dict[int, Book]) Dict with books
+        """
+        self.__library = books

@@ -1,9 +1,9 @@
-# from app.storage import MemoryLibrary
-# from app.models.book import Book
+from app.storage import MemoryLibrary
+from app.models.book import Book
 
 
-from models.book import Book
-from storage import MemoryLibrary
+# from models.book import Book
+# from storage import MemoryLibrary
 
 
 class MemoryReader:
@@ -16,6 +16,10 @@ class MemoryReader:
         :param library: (MemoryLibrary) The main memory storage for books
         """
         self.__library = library.library
+
+    @property
+    def library(self) -> MemoryLibrary.library:
+        return self.__library
 
     def get_all_books(self) -> list[Book]:
         """
@@ -34,7 +38,7 @@ class MemoryReader:
             raise ValueError('Количество книг для обработки должно быть больше чем 0')
 
         for i in range(0, len(self.__library), limit):
-            yield self.__library.values()[i:i + limit]
+            yield list(self.__library.values())[i:i + limit]
 
     def search_books_by_title(self, title: str, limit: int = 10) -> list[Book]:
         """
