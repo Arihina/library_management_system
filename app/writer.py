@@ -1,5 +1,6 @@
-from app.storage import MemoryLibrary
 from app.models.book import Book
+from app.storage import MemoryLibrary
+
 
 # from models.book import Book
 # from storage import MemoryLibrary
@@ -30,9 +31,9 @@ class MemoryWriter:
 
         if year <= 0:
             raise ValueError('Год должен быть больше чем 0')
-        if not author:
+        if len(author) == 0:
             raise ValueError('Длина имени автора должна быть больше чем 0')
-        if not title:
+        if len(title) == 0:
             raise ValueError('Длина названия должна быть больше чем 0')
 
         book = Book(title, author, year)
