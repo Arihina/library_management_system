@@ -2,7 +2,7 @@ import datetime
 import hashlib
 from dataclasses import dataclass, field
 
-from status import Status
+from .status import Status
 
 
 @dataclass

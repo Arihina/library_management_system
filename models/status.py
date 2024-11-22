@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class Status(Enum):
-    ISSUED = "выдан"
+    ISSUED = "выдана"
     IN_STOCK = "в наличии"

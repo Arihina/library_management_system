@@ -23,9 +23,9 @@ class MemoryWriter:
 
         if year <= 0:
             raise ValueError('Год должен быть больше чем 0')
-        if len(author) > 0:
+        if not author:
             raise ValueError('Длина имени автора должна быть больше чем 0')
-        if len(title) > 0:
+        if not title:
             raise ValueError('Длина названия должна быть больше чем 0')
 
         book = Book(title, author, year)
@@ -37,7 +37,7 @@ class MemoryWriter:
         :param book_id: (int) The id of the book
         """
 
-        if self.__library[book_id]:
+        if book_id in self.__library:
             self.__library.pop(book_id)
         else:
             raise KeyError(f"Книга с id {book_id} не найдена в библиотеке")
@@ -49,7 +49,7 @@ class MemoryWriter:
         :param status: (str) New status for book
         """
 
-        if status == 'в наличии' or 'выдана':
+        if status != 'в наличии' and status != 'выдана':
             raise ValueError('Статус книги может быть только в наличии / выдана')
 
         if self.__library[book_id]:
