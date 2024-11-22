@@ -1,4 +1,8 @@
-from models.book import Book
+from app.storage import MemoryLibrary
+from app.models.book import Book
+
+# from models.book import Book
+# from storage import MemoryLibrary
 
 
 class MemoryWriter:
@@ -6,11 +10,14 @@ class MemoryWriter:
     Class for working with books in RAM memory (dict)
     """
 
-    def __init__(self):
-        self.__library: dict[int, Book] = dict()
+    def __init__(self, library: MemoryLibrary):
+        """
+        :param library: (MemoryLibrary) The main memory storage for books
+        """
+        self.__library = library.library
 
     @property
-    def library(self) -> dict[int, Book]:
+    def library(self) -> MemoryLibrary.library:
         return self.__library
 
     def add_book(self, title: str, author: str, year: int) -> None:
