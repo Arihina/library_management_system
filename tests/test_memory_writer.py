@@ -1,12 +1,14 @@
 import unittest
 
+from app.storage import MemoryLibrary
 from app.writer import MemoryWriter
 
 
 class TestMemoryWriter(unittest.TestCase):
 
     def setUp(self):
-        self.writer = MemoryWriter()
+        self.lib = MemoryLibrary()
+        self.writer = MemoryWriter(self.lib)
 
     def test_correct_add(self):
         self.writer.add_book('test title', 'test author', 1888)
@@ -79,3 +81,4 @@ class TestMemoryWriter(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
