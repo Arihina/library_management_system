@@ -1,9 +1,9 @@
 import unittest
 from random import randint
 
-from app.models.book import Book
-from app.reader.memory_reader import MemoryReader
-from app.storage import MemoryLibrary
+from tools.models.book import Book
+from tools.reader.memory_reader import MemoryReader
+from tools.storage import MemoryLibrary
 
 
 class TestMemoryReader(unittest.TestCase):

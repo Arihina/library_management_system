@@ -1,5 +1,5 @@
-from app.storage import MemoryLibrary
-from app.models.book import Book
+from tools.storage import MemoryLibrary
+from tools.models.book import Book
 
 
 class MemoryReader:

@@ -20,8 +20,6 @@ class Book:
 
     def __post_init__(self):
         self.__id = id(self)
-        # hash_string = f"{self.__title}{self.__author}{self.__year}{self.__status}{datetime.datetime.now()}"
-        # self.__id = int(hashlib.sha256(hash_string.encode()).hexdigest(), 16)
 
     def __str__(self):
         return (f"Book\n\tid: {self.__id}\n\ttitle: {self.__title}\n"

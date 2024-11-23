@@ -1,5 +1,5 @@
-from app.models.book import Book
-from app.storage import MemoryLibrary
+from tools.models.book import Book
+from tools.storage import MemoryLibrary
 
 
 class MemoryWriter:
