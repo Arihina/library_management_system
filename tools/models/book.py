@@ -25,7 +25,7 @@ class Book:
         return (f"Book\n\tid: {self.__id}\n\ttitle: {self.__title}\n"
                 f"\tauthor: {self.__author}\n\tyear: {self.__year}\n\tstatus: {self.__status.value}")
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             'title': self.__title,
             'author': self.__author,
@@ -62,9 +62,17 @@ class Book:
     def status(self) -> str:
         return self.__status.value
 
+    @status.setter
+    def status(self, status: Status) -> None:
+        self.__status = status
+
     @property
     def id(self) -> int:
         return self.__id
+
+    @id.setter
+    def id(self, new_id: int) -> None:
+        self.__id = new_id
 
     def change_status(self) -> None:
         """

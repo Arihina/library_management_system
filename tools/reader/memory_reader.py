@@ -1,5 +1,5 @@
-from tools.storage import MemoryLibrary
 from tools.models.book import Book
+from tools.storage import MemoryLibrary
 
 
 class MemoryReader:
@@ -22,6 +22,7 @@ class MemoryReader:
         Get all books from storage
         :return: List of books
         """
+
         return [book for book in self.__library.values()]
 
     def get_part_books(self, limit: int = 10) -> list[Book]:
@@ -30,6 +31,7 @@ class MemoryReader:
         :param limit: The number of books received (default is 10)
         :return: List of books with a length limit
         """
+
         if limit <= 0:
             raise ValueError('Количество книг для обработки должно быть больше чем 0')
 
@@ -43,6 +45,7 @@ class MemoryReader:
         :param limit: The number of books taken for filtering at a time (default is 10)
         :return: List of filtered books by title
         """
+
         if limit <= 0:
             raise ValueError('Год должен быть больше чем 0')
         if len(title) == 0:
@@ -59,6 +62,7 @@ class MemoryReader:
         :param limit: The number of books taken for filtering at a time (default is 10)
         :return: List of filtered books by author
         """
+
         if limit <= 0:
             raise ValueError('Количество книг для обработки должно быть больше чем 0')
         if len(author) == 0:
@@ -75,6 +79,7 @@ class MemoryReader:
         :param limit: The number of books taken for filtering at a time (default is 10)
         :return: List of filtered books by year
         """
+
         if limit <= 0:
             raise ValueError('Количество книг для обработки должно быть больше чем 0')
         if year <= 0:
