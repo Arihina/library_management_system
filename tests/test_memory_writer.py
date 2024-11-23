@@ -1,7 +1,7 @@
 import unittest
 
 from app.storage import MemoryLibrary
-from app.writer import MemoryWriter
+from app.writer.memory_writer import MemoryWriter
 
 
 class TestMemoryWriter(unittest.TestCase):

@@ -2,10 +2,6 @@ from app.models.book import Book
 from app.storage import MemoryLibrary
 
 
-# from models.book import Book
-# from storage import MemoryLibrary
-
-
 class MemoryWriter:
     """
     Class for working with books in RAM memory (dict)

@@ -1,5 +1,3 @@
-import datetime
-import hashlib
 from dataclasses import dataclass, field
 
 from .status import Status
@@ -21,12 +19,22 @@ class Book:
     __id: int = field(init=False)
 
     def __post_init__(self):
-        hash_string = f"{self.__title}{self.__author}{self.__year}{self.__status}{datetime.datetime.now()}"
-        self.__id = int(hashlib.sha256(hash_string.encode()).hexdigest(), 16)
+        self.__id = id(self)
+        # hash_string = f"{self.__title}{self.__author}{self.__year}{self.__status}{datetime.datetime.now()}"
+        # self.__id = int(hashlib.sha256(hash_string.encode()).hexdigest(), 16)
 
     def __str__(self):
         return (f"Book\n\tid: {self.__id}\n\ttitle: {self.__title}\n"
                 f"\tauthor: {self.__author}\n\tyear: {self.__year}\n\tstatus: {self.__status.value}")
+
+    def to_dict(self):
+        return {
+            'title': self.__title,
+            'author': self.__author,
+            'year': self.__year,
+            'status': self.__status.value,
+            'id': self.__id
+        }
 
     @property
     def title(self) -> str:

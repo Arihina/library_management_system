@@ -2,7 +2,7 @@ import unittest
 from random import randint
 
 from app.models.book import Book
-from app.reader import MemoryReader
+from app.reader.memory_reader import MemoryReader
 from app.storage import MemoryLibrary
 
 
@@ -62,3 +62,7 @@ class TestMemoryReader(unittest.TestCase):
             list(self.reader.search_books_by_title(''))
 
         self.assertEqual(str(ex2.exception), 'Длина названия должна быть больше чем 0')
+
+
+if __name__ == '__main__':
+    unittest.main()

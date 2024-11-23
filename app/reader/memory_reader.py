@@ -2,10 +2,6 @@ from app.storage import MemoryLibrary
 from app.models.book import Book
 
 
-# from models.book import Book
-# from storage import MemoryLibrary
-
-
 class MemoryReader:
     """
     Class for get and search books in RAM memory (dict)
