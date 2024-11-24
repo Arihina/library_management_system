@@ -1,5 +1,4 @@
 from tools.exceptions.book_exc import BookNotFoundError
-from tools.models.console_color import Color
 from tools.reader.json_reader import FileReader
 from tools.writer.json_writer import FileWriter
 
@@ -30,9 +29,9 @@ class App:
         try:
             year = int(year)
             if year <= 0:
-                return f'{Color.RED.value}Год должен быть больше чем 0{Color.RESET.value}'
+                return 'Год должен быть больше чем 0'
         except ValueError as ex:
-            return f'{Color.RED.value}Год должен быть целым числом {Color.RESET.value}'
+            return 'Год должен быть целым числом'
 
         return 'valid'
 
@@ -43,20 +42,20 @@ class App:
                 f"(3) Добавить книгу\n"
                 f"(4) Изменить статус книги\n"
                 f"(5) Удалить книгу\n"
-                f"(-1) {Color.RED.value}Выход{Color.RESET.value}")
+                f"(-1)Выход")
 
     def show_all_books(self) -> None:
         try:
             books = self.reader.get_all()
         except FileNotFoundError as ex:
-            print(f'{Color.RED.value}{str(ex)}{Color.RESET.value}')
+            print(f'{str(ex)}')
             return
 
         if len(books) == 0:
-            print(f'{Color.YELLOW.value}В библиотеке нет книг{Color.RESET.value}')
+            print(f'В библиотеке нет книг')
             return
 
-        print(f'{Color.BLUE.value}Все книги{Color.RESET.value}')
+        print(f'Все книги')
 
         for book in books:
             print(book)
@@ -69,7 +68,7 @@ class App:
             '3': 'год'
         }
 
-        print(f"{Color.MAGENTA.value}Поиск книги{Color.RESET.value}\n"
+        print(f"Поиск книги\n"
               f"Выберите поле для поиска\n"
               f"(1) Автор\n"
               f"(2) Название\n"
@@ -101,14 +100,14 @@ class App:
                     for book in books:
                         print(book)
                 else:
-                    print(f'{Color.YELLOW.value}Книги не найдены{Color.RESET.value}')
+                    print(f'Книги не найдены')
 
             except KeyError as ex:
-                ex_message = f'{Color.RED.value}Некорректный выбор пункта меню, попробуйте ещё раз{Color.RESET.value}'
+                ex_message = f'Некорректный выбор пункта меню, попробуйте ещё раз'
                 print(ex_message)
 
     def processing_add_book(self) -> None:
-        print(f"{Color.MAGENTA.value}Добавление книги{Color.RESET.value}")
+        print(f"Добавление книги")
         print("Введите -1 для выхода в главное меню")
         print("Enter чтобы продолжить")
 
@@ -133,12 +132,12 @@ class App:
 
             try:
                 self.writer.add_book(title, author, year)
-                print(f'{Color.GREEN.value}Книга добавлена успешно{Color.RESET.value}')
+                print(f'Книга добавлена успешно')
             except FileNotFoundError as ex:
-                print(f'{Color.RED.value}{str(ex)}{Color.RESET.value}')
+                print(f'{str(ex)}')
 
     def processing_edit_status(self) -> None:
-        print(f"{Color.MAGENTA.value}Изменение статуса книги{Color.RESET.value}")
+        print(f"Изменение статуса книги")
         print("Введите -1 для выхода в главное меню")
         print("Enter чтобы продолжить")
 
@@ -152,7 +151,7 @@ class App:
             try:
                 book_id = int(book_id)
             except ValueError as ex:
-                print(f"{Color.RED.value}Некорректный id книги, id книги - это цело число{Color.RESET.value}")
+                print(f"Некорректный id книги, id книги - это цело число")
 
             print("Выберите статус")
             print("0 - выдана")
@@ -160,19 +159,19 @@ class App:
 
             choice = input('-> ')
             if choice != '1' and choice != '0':
-                print(f"{Color.RED.value}Не верно выбранный статус{Color.RESET.value}")
+                print(f"Не верно выбранный статус")
                 continue
 
             try:
                 new_status = 'выдана' if choice == '0' else 'в наличии'
                 self.writer.update_status_book(book_id, new_status)
             except FileNotFoundError as ex:
-                print(f"{Color.RED.value}{str(ex)}{Color.RESET.value}")
+                print(f"{str(ex)}")
             except BookNotFoundError as ex:
-                print(f"{Color.RED.value}{str(ex)}{Color.RESET.value}")
+                print(f"{str(ex)}")
 
     def processing_delete_book(self) -> None:
-        print(f"{Color.MAGENTA.value}Удаление книги{Color.RESET.value}")
+        print(f"Удаление книги")
 
         while True:
             print("Для выхода в главное меню введите -1")
@@ -187,18 +186,18 @@ class App:
             try:
                 book_id = int(book_id)
             except ValueError as ex:
-                print(f"{Color.RED.value}Некорректный id книги, id книги - это цело число{Color.RESET.value}")
+                print(f"Некорректный id книги, id книги - это цело число")
 
             try:
                 self.writer.remove_book(book_id)
-                print(f"{Color.GREEN.value}Книга успешно удалена{Color.RESET.value}")
+                print(f"Книга успешно удалена")
             except FileNotFoundError as ex:
-                print(f"{Color.RED.value}{str(ex)}{Color.RESET.value}")
+                print(f"{str(ex)}")
             except BookNotFoundError as ex:
-                print(f"{Color.RED.value}{str(ex)}{Color.RESET.value}")
+                print(f"{str(ex)}")
 
     def run(self) -> None:
-        print(f"{Color.GREEN.value}Добро пожаловать в бибиотеку{Color.RESET.value}\n")
+        print(f"Добро пожаловать в бибиотеку\n")
         while True:
             print(self.get_main_menu())
             choice = input('-> ')
@@ -209,5 +208,5 @@ class App:
             try:
                 self.menu_point[choice]()
             except KeyError as ex:
-                ex_message = f'{Color.RED.value}Некорректный выбор пункта меню, попробуйте ещё раз{Color.RESET.value}'
+                ex_message = f'Некорректный выбор пункта меню, попробуйте ещё раз'
                 print(ex_message)
