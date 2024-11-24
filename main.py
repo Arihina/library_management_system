@@ -52,6 +52,10 @@ class App:
             print(f'{Color.RED.value}{str(ex)}{Color.RESET.value}')
             return
 
+        if len(books) == 0:
+            print(f'{Color.YELLOW.value}В библиотеке нет книг{Color.RESET.value}')
+            return
+
         print(f'{Color.BLUE.value}Все книги{Color.RESET.value}')
 
         for book in books:
