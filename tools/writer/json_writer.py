@@ -39,6 +39,7 @@ class FileWriter:
         Remove Book from library (json)
         :param book_id: (int) The id of the book
         """
+
         try:
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 books = json.load(file)

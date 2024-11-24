@@ -38,6 +38,8 @@ class FileReader:
             else:
                 book.status = Status.IN_STOCK
 
+            book.id = book_data['id']
+
             result.append(book)
 
         return result
@@ -48,6 +50,7 @@ class FileReader:
         :param title: Filter parameter
         :return: List of filtered books by title
         """
+
         if len(title) == 0:
             raise ValueError('Длина названия должна быть больше чем 0')
 
